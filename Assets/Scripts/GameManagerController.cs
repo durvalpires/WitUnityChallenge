@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameManagerController : GenericSingleton<GameManagerController>
 {
-
+    #region Lifecycle
     public override void Awake()
     {
         base.Awake();
@@ -19,7 +19,7 @@ public class GameManagerController : GenericSingleton<GameManagerController>
     void Start () {
         ServiceSections.Instance.selected = ServiceSections.SECTION.INTRO;
 	}
-
+    #endregion
 
     #region Animation
     public int numberOfAnimations = 4;

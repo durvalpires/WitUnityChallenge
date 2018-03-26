@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -20,24 +21,37 @@ public class IOController {
     {
         string filePath = Path.Combine(Application.dataPath, index.ToString() + ".json");
 
-        if (File.Exists(filePath))
-        {
+
             string json = JsonUtility.ToJson(data);
             File.WriteAllText(filePath, json);
-        }
     }
 
     public CharacterCustomizableData LoadCharacterDataFromDisk(GameManagerController.CHARACTERINDEX i)
     {
         string filePath = Path.Combine(Application.dataPath, i.ToString() + ".json");
+        CharacterCustomizableData cData = null;
 
         if (File.Exists(filePath))
         {
             string dataAsJson = File.ReadAllText(filePath);
-            CharacterCustomizableData cData = JsonUtility.FromJson<CharacterCustomizableData>(dataAsJson);
+            cData = JsonUtility.FromJson<CharacterCustomizableData>(dataAsJson);
             return cData;
         }
+        else
+        {
+            cData = CreateNewCharacter();
+            SaveCharacterDataToDisk(i, cData);
+        }
 
-        return null;
+        return cData;
+    }
+
+    private CharacterCustomizableData CreateNewCharacter()
+    {
+        CharacterCustomizableData newChar =  new CharacterCustomizableData();
+        newChar.name = "New Character";
+        newChar.currentAnimation = 0;
+        newChar.currentStyle = 0;
+        return newChar;
     }
 }
