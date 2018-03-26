@@ -8,13 +8,13 @@ public class UIIntroSection : View {
 
     public Image background;
 
-	// Use this for initialization
 	void Start () {
         GameManagerController.Instance.UpdateCharactersDataFromDisk();
         background.DOFade(1f, .5f);
         Invoke("LoadVisualization", 2f);
 	}
 
+    #region Visualization Section Loading
     protected void LoadVisualization()
     {
         background.DOFade(0f, 3f);
@@ -29,11 +29,14 @@ public class UIIntroSection : View {
         SceneManager.sceneLoaded -= OnVisualizationFinishedLoading;
 
     }
+    #endregion
 
+    #region Hide
     public override void hide(bool animate, float delay)
     {
         //base.hide(animate, delay);
 
         background.DOFade(0f, 0f).OnComplete(() => { _dispatchHideCompleted(); });
     }
+    #endregion
 }

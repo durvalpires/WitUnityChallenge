@@ -9,17 +9,13 @@ public class UIVisualizationSection : View {
     public TextMeshProUGUI character1Name;
     public TextMeshProUGUI character2Name;
 
-    private void Awake()
-    {
-        //GameManagerController.Instance.UpdateCharactersDataFromDisk();
-    }
 
-    // Use this for initialization
     void Start () {
         LoadCharacterNames();
 	}
-	
-	public void LoadCharacterNames()
+
+    #region Show/Hide
+    public void LoadCharacterNames()
     {
         character1Name.text = GameManagerController.Instance.GetCharacterData(GameManagerController.CHARACTERINDEX.ONE).name;
         character2Name.text = GameManagerController.Instance.GetCharacterData(GameManagerController.CHARACTERINDEX.TWO).name;
@@ -45,4 +41,5 @@ public class UIVisualizationSection : View {
         mySequence.Append(character1Name.DOFade(0f, 0f));
         mySequence.Join(character2Name.DOFade(0f, .0f));
     }
+    #endregion  
 }

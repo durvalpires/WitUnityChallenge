@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour {
 
+    #region Properties
     public GameManagerController.CHARACTERINDEX index;
 
     protected CharacterCustomizableData data;
@@ -26,20 +27,23 @@ public class Character : MonoBehaviour {
 
     public Renderer render;
 
+    #endregion
+
+    #region Lifecycle
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    // Use this for initialization
     void Start () {
         InitializeCharacter();
     }
-	
-	protected void InitializeCharacter()
+    #endregion
+
+    #region Character
+    protected void InitializeCharacter()
     {
         data = GameManagerController.Instance.GetCharacterData(index);
-        //animator.SetInteger("selectedAnim", data.currentAnimation);
         UpdateCharacter();
     }
 
@@ -48,7 +52,9 @@ public class Character : MonoBehaviour {
         UpdateAnimation();
         UpdateStyle();
     }
+    #endregion
 
+    #region Animation
     public void UpdateAnimation()
     {
         animator.SetInteger("selectedAnim", data.currentAnimation);
@@ -59,7 +65,9 @@ public class Character : MonoBehaviour {
         data.currentAnimation = anim;
         animator.SetInteger("selectedAnim", data.currentAnimation);
     }
+    #endregion
 
+    #region Style
     internal void UpdateStyle(CharacterStyle style)
     {
         data.currentStyle = style.Id;
@@ -71,4 +79,5 @@ public class Character : MonoBehaviour {
         CharacterStyle s = GameManagerController.Instance.styles[data.currentStyle];
         render.material.mainTexture = s.Texture;
     }
+    #endregion
 }

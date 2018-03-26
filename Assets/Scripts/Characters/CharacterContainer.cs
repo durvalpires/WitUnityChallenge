@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class CharacterContainer : MonoBehaviour {
 
+    #region Properties
     public Character character1Prefab;
     public Character character2Prefab;
 
     protected Character customizableCharacter;
+    #endregion
 
-    // Use this for initialization
     void Awake () {
         SetupCharacter();
 	}
 
+    #region Character
     private void SetupCharacter()
     {
         switch (GameManagerController.Instance.GetSelectedCharacter())
@@ -40,7 +42,9 @@ public class CharacterContainer : MonoBehaviour {
     {
         customizableCharacter.Data = data;
     }
+    #endregion
 
+    #region Callbacks
     public void OnNameChanged(string name)
     {
         customizableCharacter.Data.name = name;
@@ -55,4 +59,5 @@ public class CharacterContainer : MonoBehaviour {
     {
         customizableCharacter.UpdateStyle(newStyle);
     }
+    #endregion
 }

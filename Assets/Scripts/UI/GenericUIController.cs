@@ -7,12 +7,14 @@ using DG.Tweening;
 
 public class GenericUIController : MonoBehaviour {
 
+    #region Properties
     public Button quitButton;
     protected CanvasGroup quitButtonCanvas;
     public QuitMenuController quitMenu;
+    #endregion
 
-	// Use this for initialization
-	void Awake () {
+    #region Lifecycle
+    void Awake () {
         quitButtonCanvas = quitButton.gameObject.GetComponent<CanvasGroup>();
         ServiceSections.Instance.onSelectedChanged += OnSectionChanged;
         quitButton.onClick.AddListener(OnQuitButtonPressed);
@@ -23,6 +25,9 @@ public class GenericUIController : MonoBehaviour {
         quitButton.onClick.RemoveAllListeners();
         ServiceSections.Instance.onSelectedChanged -= OnSectionChanged;
     }
+    #endregion
+
+    #region Callbacks
 
     private void OnSectionChanged(ServiceSections.SECTION selected)
     {
@@ -42,4 +47,5 @@ public class GenericUIController : MonoBehaviour {
     {
         quitMenu.Show();
     }
+    #endregion
 }

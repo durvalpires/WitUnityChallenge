@@ -9,6 +9,7 @@ using DG.Tweening;
 
 public class UICustomizationWorldUI : View {
 
+    #region Properties
     public TMP_InputField nameInput;
     public TextMeshProUGUI animationName;
     public Button animationLeftArrow;
@@ -28,11 +29,16 @@ public class UICustomizationWorldUI : View {
     CharacterCustomizableData editableData;
 
     public CharacterContainer characterContainer;
+    #endregion
+
+    #region Events
     public delegate void AnimationChangedArgs(int anim);
     public event AnimationChangedArgs OnAnimationChangedArgs;
     public delegate void StyleChangedArgs(CharacterStyle newStyle);
     public event StyleChangedArgs OnStyleChangedArgs;
+    #endregion
 
+    #region Lifecycle
     private void Awake()
     {
         editableData = new CharacterCustomizableData();
@@ -53,12 +59,6 @@ public class UICustomizationWorldUI : View {
         AnimateIn();
 	}
 
-    private void AnimateIn()
-    {
-        downButtonsRect.DOAnchorPosY(targetDownButtonsRectYvalue, animationDuration);
-        customizationMenuRect.DOAnchorPosX(targetCustomizationMenuRectXvalue, animationDuration);
-    }
-
     private void OnDestroy()
     {
         OnStyleChangedArgs -= characterContainer.OnStyleChanged;
@@ -69,7 +69,9 @@ public class UICustomizationWorldUI : View {
         saveButton.onClick.RemoveAllListeners();
         discardButton.onClick.RemoveAllListeners();
     }
+    #endregion
 
+    #region Info
     private void SetupInfo()
     {
         CharacterCustomizableData initialData = GameManagerController.Instance.GetCharacterData(GameManagerController.Instance.GetSelectedCharacter());
@@ -81,7 +83,9 @@ public class UICustomizationWorldUI : View {
         animationName.text = GameManagerController.Instance.animationNames[editableData.currentAnimation];
         styleName.text = GameManagerController.Instance.styles[editableData.currentStyle].Name;
     }
+    #endregion
 
+    #region Callbacks
     private void OnAnimRightArrowPressed()
     {
         SoundManager.Instance.PlaySfx(SoundManager.SFX.OPTIONSWITCH);
@@ -168,4 +172,13 @@ public class UICustomizationWorldUI : View {
     {
         editableData.name = nameInput.text;
     }
+    #endregion
+
+    #region Show Animation
+    private void AnimateIn()
+    {
+        downButtonsRect.DOAnchorPosY(targetDownButtonsRectYvalue, animationDuration);
+        customizationMenuRect.DOAnchorPosX(targetCustomizationMenuRectXvalue, animationDuration);
+    }
+    #endregion
 }

@@ -11,7 +11,6 @@ public class ViewSectionsContainer : View
 
         set
         {
-            //if(this._section == value) return;
             this._section = value;
             if(this._section == null) return;
             this._section.transform.SetParent(this.transform, false);

@@ -8,7 +8,6 @@ public class InputController : MonoBehaviour {
 
     public LayerMask lMask;
 
-    // Update is called once per frame
     void Update()
     {
         if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
