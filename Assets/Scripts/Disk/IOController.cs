@@ -8,7 +8,7 @@ public class IOController {
 
 	public void SaveCharacterDataToDisk(Character c)
     {
-        string filePath = Path.Combine(Application.dataPath, c.index.ToString() + ".json");
+        string filePath = Path.Combine(Application.persistentDataPath, c.index.ToString() + ".json");
 
         if (File.Exists(filePath))
         {
@@ -19,7 +19,7 @@ public class IOController {
 
     public void SaveCharacterDataToDisk(GameManagerController.CHARACTERINDEX index, CharacterCustomizableData data)
     {
-        string filePath = Path.Combine(Application.dataPath, index.ToString() + ".json");
+        string filePath = Path.Combine(Application.persistentDataPath, index.ToString() + ".json");
 
 
             string json = JsonUtility.ToJson(data);
@@ -28,7 +28,7 @@ public class IOController {
 
     public CharacterCustomizableData LoadCharacterDataFromDisk(GameManagerController.CHARACTERINDEX i)
     {
-        string filePath = Path.Combine(Application.dataPath, i.ToString() + ".json");
+        string filePath = Path.Combine(Application.persistentDataPath, i.ToString() + ".json");
         CharacterCustomizableData cData = null;
 
         if (File.Exists(filePath))
