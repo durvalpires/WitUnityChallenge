@@ -178,7 +178,14 @@ public class UICustomizationWorldUI : View {
     private void AnimateIn()
     {
         downButtonsRect.DOAnchorPosY(targetDownButtonsRectYvalue, animationDuration);
+        CanvasGroup downButtonsCanvas = downButtonsRect.GetComponent<CanvasGroup>();
+        downButtonsCanvas.DOFade(1f, animationDuration);
+        downButtonsCanvas.blocksRaycasts = downButtonsCanvas.interactable = true;
+
         customizationMenuRect.DOAnchorPosX(targetCustomizationMenuRectXvalue, animationDuration);
+        CanvasGroup customizationMenuCanvas = customizationMenuRect.GetComponent<CanvasGroup>();
+        customizationMenuCanvas.DOFade(1f, animationDuration);
+        customizationMenuCanvas.blocksRaycasts = customizationMenuCanvas.interactable = true;
     }
     #endregion
 }
