@@ -20,7 +20,7 @@ public class InputController : MonoBehaviour {
                 }
             }
         }
-        else if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.OSXEditor)
+        else if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.OSXPlayer)
         {
             if (Input.GetMouseButtonDown(0))
             {
